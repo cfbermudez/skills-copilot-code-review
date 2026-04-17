@@ -953,32 +953,69 @@ document.addEventListener("DOMContentLoaded", () => {
 
       const expirationDateStr = new Date(announcement.expiration_date).toLocaleString();
 
-      announcementItem.innerHTML = `
-        <div class="announcement-content">
-          <h5>${announcement.title}</h5>
-          <p>${announcement.message}</p>
-          <div class="announcement-dates">
-            <small><strong>Start:</strong> ${startDateStr}</small>
-            <small><strong>Expires:</strong> ${expirationDateStr}</small>
-            <small class="status ${isExpired ? "status-expired" : "status-active"}">
-              ${isExpired ? "Expired" : "Active"}
-            </small>
-          </div>
-        </div>
-        <div class="announcement-actions">
-          <button class="btn btn-sm btn-primary edit-announcement-btn" data-id="${announcement.id}">Edit</button>
-          <button class="btn btn-sm btn-danger delete-announcement-btn" data-id="${announcement.id}">Delete</button>
-        </div>
-      `;
+      const announcementContent = document.createElement("div");
+      announcementContent.className = "announcement-content";
+
+      const titleElement = document.createElement("h5");
+      titleElement.textContent = announcement.title;
+
+      const messageElement = document.createElement("p");
+      messageElement.textContent = announcement.message;
+
+      const datesContainer = document.createElement("div");
+      datesContainer.className = "announcement-dates";
+
+      const startSmall = document.createElement("small");
+      const startStrong = document.createElement("strong");
+      startStrong.textContent = "Start:";
+      startSmall.appendChild(startStrong);
+      startSmall.appendChild(document.createTextNode(` ${startDateStr}`));
+
+      const expiresSmall = document.createElement("small");
+      const expiresStrong = document.createElement("strong");
+      expiresStrong.textContent = "Expires:";
+      expiresSmall.appendChild(expiresStrong);
+      expiresSmall.appendChild(document.createTextNode(` ${expirationDateStr}`));
+
+      const statusSmall = document.createElement("small");
+      statusSmall.className = `status ${isExpired ? "status-expired" : "status-active"}`;
+      statusSmall.textContent = isExpired ? "Expired" : "Active";
+
+      datesContainer.appendChild(startSmall);
+      datesContainer.appendChild(expiresSmall);
+      datesContainer.appendChild(statusSmall);
+
+      announcementContent.appendChild(titleElement);
+      announcementContent.appendChild(messageElement);
+      announcementContent.appendChild(datesContainer);
+
+      const announcementActions = document.createElement("div");
+      announcementActions.className = "announcement-actions";
+
+      const editButton = document.createElement("button");
+      editButton.className = "btn btn-sm btn-primary edit-announcement-btn";
+      editButton.setAttribute("data-id", announcement.id);
+      editButton.textContent = "Edit";
+
+      const deleteButton = document.createElement("button");
+      deleteButton.className = "btn btn-sm btn-danger delete-announcement-btn";
+      deleteButton.setAttribute("data-id", announcement.id);
+      deleteButton.textContent = "Delete";
+
+      announcementActions.appendChild(editButton);
+      announcementActions.appendChild(deleteButton);
+
+      announcementItem.appendChild(announcementContent);
+      announcementItem.appendChild(announcementActions);
 
       announcementsList.appendChild(announcementItem);
 
       // Add event listeners
-      announcementItem.querySelector(".edit-announcement-btn").addEventListener("click", () => {
+      editButton.addEventListener("click", () => {
         editAnnouncement(announcement);
       });
 
-      announcementItem.querySelector(".delete-announcement-btn").addEventListener("click", () => {
+      deleteButton.addEventListener("click", () => {
         deleteAnnouncement(announcement.id, announcement.title);
       });
     });
