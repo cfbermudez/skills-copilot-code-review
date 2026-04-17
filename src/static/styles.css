@@ -672,3 +672,341 @@ footer {
   padding: 15px;
   font-weight: bold;
 }
+
+.announcement-banner.hidden {
+  display: none;
+}
+
+/* Announcements Management Button */
+#user-controls {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+#manage-announcements-container {
+  display: flex;
+}
+
+#manage-announcements-container.hidden {
+  display: none;
+}
+
+#manage-announcements-button {
+  background-color: rgba(255, 255, 255, 0.2);
+  color: var(--primary-text);
+  font-size: 1.2rem;
+  padding: 8px 12px;
+  border-radius: 5px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+#manage-announcements-button:hover {
+  background-color: rgba(255, 255, 255, 0.3);
+  border-color: rgba(255, 255, 255, 0.5);
+}
+
+/* Modal Enhancements */
+.modal-lg {
+  width: 90%;
+  max-width: 800px;
+  max-height: 85vh;
+  overflow-y: auto;
+}
+
+/* Announcements Modal Specific Styles */
+.announcements-header {
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.announcement-form {
+  background-color: var(--border-light);
+  padding: 20px;
+  border-radius: 5px;
+  margin-bottom: 20px;
+  border: 1px solid var(--border);
+}
+
+.announcement-form h4 {
+  margin-bottom: 15px;
+  color: var(--primary);
+  font-size: 1rem;
+}
+
+.form-row {
+  display: flex;
+  gap: 15px;
+}
+
+.form-group-half {
+  flex: 1;
+  min-width: 0;
+}
+
+.announcement-form .form-group {
+  margin-bottom: 15px;
+}
+
+.announcement-form label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+  color: var(--text-primary);
+}
+
+.announcement-form input[type="text"],
+.announcement-form input[type="datetime-local"],
+.announcement-form textarea {
+  width: 100%;
+  padding: 8px 10px;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  font-family: Arial, sans-serif;
+  font-size: 0.9rem;
+}
+
+.announcement-form input[type="text"]:focus,
+.announcement-form input[type="datetime-local"]:focus,
+.announcement-form textarea:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 2px var(--primary-light);
+}
+
+.announcement-form textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+
+.form-actions {
+  display: flex;
+  gap: 10px;
+  justify-content: flex-end;
+  margin-top: 15px;
+}
+
+/* Button Styles */
+.btn {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 4px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-weight: 500;
+}
+
+.btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.btn-primary {
+  background-color: var(--primary);
+  color: var(--primary-text);
+}
+
+.btn-primary:hover {
+  background-color: var(--primary-dark);
+}
+
+.btn-secondary {
+  background-color: var(--border);
+  color: var(--text-primary);
+  border: 1px solid var(--border-focus);
+}
+
+.btn-secondary:hover {
+  background-color: var(--border-light);
+  border-color: var(--text-secondary);
+}
+
+.btn-danger {
+  background-color: var(--error);
+  color: var(--primary-text);
+}
+
+.btn-danger:hover {
+  background-color: #a92020;
+}
+
+.btn-sm {
+  padding: 5px 10px;
+  font-size: 0.85rem;
+}
+
+/* Announcements List */
+.announcements-list {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.announcement-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 15px;
+  border: 1px solid var(--border);
+  border-radius: 5px;
+  background-color: var(--surface);
+  transition: all 0.2s ease;
+}
+
+.announcement-item:hover {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.announcement-item.expired {
+  opacity: 0.7;
+  background-color: var(--border-light);
+}
+
+.announcement-item.active {
+  border-left: 4px solid var(--success);
+}
+
+.announcement-content {
+  flex: 1;
+}
+
+.announcement-content h5 {
+  margin-bottom: 8px;
+  color: var(--primary);
+  font-size: 1rem;
+}
+
+.announcement-content p {
+  margin-bottom: 10px;
+  line-height: 1.5;
+  color: var(--text-primary);
+}
+
+.announcement-dates {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  margin-top: 10px;
+}
+
+.announcement-dates small {
+  color: var(--text-secondary);
+  font-size: 0.8rem;
+}
+
+.status {
+  padding: 3px 8px;
+  border-radius: 3px;
+  font-weight: bold;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+}
+
+.status-active {
+  background-color: var(--success-light);
+  color: var(--success);
+}
+
+.status-expired {
+  background-color: var(--error-light);
+  color: var(--error);
+}
+
+.announcement-actions {
+  display: flex;
+  gap: 8px;
+  margin-left: 15px;
+  flex-shrink: 0;
+}
+
+.no-announcements {
+  text-align: center;
+  color: var(--text-secondary);
+  padding: 30px 20px;
+  font-style: italic;
+}
+
+.loading {
+  text-align: center;
+  color: var(--text-secondary);
+  padding: 20px;
+}
+
+/* Icon Button Style */
+.icon-button {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 1rem;
+  padding: 8px 12px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--primary-text);
+  transition: all 0.2s ease;
+}
+
+.icon-button:hover {
+  transform: scale(1.05);
+}
+
+/* Responsive Design */
+@media (max-width: 600px) {
+  .modal-lg {
+    width: 95%;
+    max-height: 90vh;
+  }
+
+  .announcement-item {
+    flex-direction: column;
+  }
+
+  .announcement-actions {
+    margin-left: 0;
+    margin-top: 10px;
+    width: 100%;
+  }
+
+  .announcement-actions .btn {
+    flex: 1;
+  }
+
+  .form-row {
+    flex-direction: column;
+  }
+
+  .form-group-half {
+    flex: 1;
+  }
+
+  .form-actions {
+    flex-direction: column;
+  }
+
+  .form-actions .btn {
+    width: 100%;
+  }
+
+  .announcement-dates {
+    flex-direction: column;
+    gap: 5px;
+  }
+
+  #user-controls {
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+  }
+
+  .announcements-header {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .announcements-header .btn {
+    width: 100%;
+  }
+}
