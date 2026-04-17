@@ -18,14 +18,20 @@ router = APIRouter(
 
 @router.get("")
 def get_announcements() -> List[Dict[str, Any]]:
-    """Get all active announcements that haven't expired"""
+    """Get all active announcements that haven't expired and have already started"""
     now = datetime.utcnow().isoformat()
     
     # Find active announcements where expiration_date is in the future
+    # and start_date is not in the future (or is unset)
     announcements = list(announcements_collection.find(
         {
             "status": "active",
-            "expiration_date": {"$gt": now}
+            "expiration_date": {"$gt": now},
+            "$or": [
+                {"start_date": {"$lte": now}},
+                {"start_date": None},
+                {"start_date": {"$exists": False}}
+            ]
         },
         {"_id": 1, "title": 1, "message": 1, "start_date": 1, "expiration_date": 1, "created_at": 1}
     ).sort("created_at", DESCENDING))
