@@ -1074,10 +1074,19 @@ document.addEventListener("DOMContentLoaded", () => {
         : "/announcements";
       const method = announcementId ? "PUT" : "POST";
 
-      const response = await fetch(
-        `${url}?username=${encodeURIComponent(currentUser.username)}&title=${encodeURIComponent(title)}&message=${encodeURIComponent(message)}&start_date=${encodeURIComponent(startDate || "")}&expiration_date=${encodeURIComponent(expirationDate)}`,
-        { method }
-      );
+      const response = await fetch(url, {
+        method,
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          username: currentUser.username,
+          title,
+          message,
+          start_date: startDate || "",
+          expiration_date: expirationDate,
+        }),
+      });
 
       if (!response.ok) {
         const error = await response.json();
